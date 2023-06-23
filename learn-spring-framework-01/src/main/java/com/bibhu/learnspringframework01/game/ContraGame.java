@@ -1,6 +1,6 @@
 package com.bibhu.learnspringframework01.game;
 
-public class ContraGame implements GamingConsole{
+public class ContraGame implements GamingConsole {
 
     public void up() {
         System.out.println("Contra Jump");
@@ -17,4 +17,5 @@ public class ContraGame implements GamingConsole{
     public void right() {
         System.out.println("Contra right");
     }
+
 }

@@ -31,6 +31,6 @@ public class App02HelloWorldSpring {
         //Address addressBean = (Address) context.getBean("address");
         var addressBean = context.getBean("address");
         System.out.println(addressBean);
-        
+
     }
 }
