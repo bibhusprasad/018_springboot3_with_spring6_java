@@ -1,4 +1,4 @@
-package com.bibhu.learnspringframework01;
+package com.bibhu.learnspringframework01.helloworld;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -29,8 +29,18 @@ public class App02HelloWorldSpring {
         System.out.println(personBean);
 
         //Address addressBean = (Address) context.getBean("address");
-        var addressBean = context.getBean("address");
+        //var addressBean = context.getBean("address"); //NoSuchBeanDefinitionException: No bean named 'address' available
+        var addressBean = context.getBean("myAddress");
         System.out.println(addressBean);
+
+        var addressBeanByType = context.getBean(Address.class);
+        System.out.println(addressBeanByType);
+
+        var personBeanByMethodCall = context.getBean("person2ByMethodCall");
+        System.out.println(personBeanByMethodCall);
+
+        var personBeanByParameter = context.getBean("person3ByParameter");
+        System.out.println(personBeanByParameter);
 
     }
 }

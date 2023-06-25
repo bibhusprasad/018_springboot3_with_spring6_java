@@ -1,8 +1,8 @@
-package com.bibhu.learnspringframework01;
+package com.bibhu.learnspringframework01.game;
 
-import com.bibhu.learnspringframework01.game.ContraGame;
-import com.bibhu.learnspringframework01.game.GameRunner;
-import com.bibhu.learnspringframework01.game.MarioGame;
+import com.bibhu.learnspringframework01.game.model.ContraGame;
+import com.bibhu.learnspringframework01.game.model.GameRunner;
+import com.bibhu.learnspringframework01.game.model.MarioGame;
 
 public class App01GamingJavaBasic {
 

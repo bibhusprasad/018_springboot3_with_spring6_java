@@ -1,4 +1,4 @@
-package com.bibhu.learnspringframework01.game;
+package com.bibhu.learnspringframework01.game.model;
 
 public interface GamingConsole {
 

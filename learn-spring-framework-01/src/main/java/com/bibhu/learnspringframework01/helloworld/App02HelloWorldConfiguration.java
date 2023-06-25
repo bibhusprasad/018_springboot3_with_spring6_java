@@ -1,4 +1,4 @@
-package com.bibhu.learnspringframework01;
+package com.bibhu.learnspringframework01.helloworld;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +11,12 @@ public class App02HelloWorldConfiguration {
 
     @Bean
     public String name() {
-        return "bibhu";
+        return "Ankita";
     }
 
     @Bean
     public int age() {
-        return 33;
+        return 27;
     }
 
     @Bean
@@ -24,8 +24,18 @@ public class App02HelloWorldConfiguration {
         return new Person("Bibhu", 33);
     }
 
-    @Bean
+    @Bean (name = "myAddress")
     public Address address() {
         return new Address("Bangalore", 560087);
+    }
+
+    @Bean
+    public Person person2ByMethodCall() {
+        return new Person(name(), age());
+    }
+
+    @Bean
+    public Person person3ByParameter(String name, int age) {
+        return new Person(name, age);
     }
 }
