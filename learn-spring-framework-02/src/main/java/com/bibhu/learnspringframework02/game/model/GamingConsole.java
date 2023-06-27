@@ -1,6 +1,5 @@
 package com.bibhu.learnspringframework02.game.model;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
