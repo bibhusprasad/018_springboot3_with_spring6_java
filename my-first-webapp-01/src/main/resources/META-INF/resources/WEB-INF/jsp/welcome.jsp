@@ -1,14 +1,11 @@
 <html>
     <head>
-        <title>Login Page</title>
+        <title>Welcome Page</title>
     </head>
     <body>
-        Welcome Page
-        <form method="post">
-            Name: <input type="text" id="name" name="name"> </br>
-            Password: <input type="password" id="password" name="password"> </br>
-            <input type="submit">
-        </form>
+        <div>
+            Welcome ${name} to the XYZ Page.
+        </div>
     </body>
 </html>
 
