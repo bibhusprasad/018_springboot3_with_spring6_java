@@ -5,8 +5,8 @@
     <body>
         Welcome Page
         <form method="post">
-            Name: <input type="text" id="name" name="name"> </br>
-            Password: <input type="password" id="password" name="password"> </br>
+            Name: <input type="text" id="name" name="name"/> </br>
+            Password: <input type="password" id="password" name="password"/> </br>
             <input type="submit">
         </form>
     </body>
