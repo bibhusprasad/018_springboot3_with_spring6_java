@@ -2,14 +2,16 @@ package com.bibhu.springboot.todowebapp01.todo.controller;
 
 import com.bibhu.springboot.todowebapp01.todo.model.Todo;
 import com.bibhu.springboot.todowebapp01.todo.service.TodoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -35,16 +37,19 @@ public class TodoController {
     }
 
     @GetMapping("add-todo")
-    public String showNewTodoPage(){
+    public String showNewTodoPage(ModelMap model){
+        String username = (String) model.get("name");
+        Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), "No");
+        model.put("todo", todo);
         return "addTodos";
     }
 
     @PostMapping("add-todo")
-    public String addNewTodo(@RequestParam String description,
-                             @RequestParam String targetDate,
-                             @RequestParam String done,
-                             ModelMap model){
-        todoService.addNewTodo(description, targetDate, done, model);
+    public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result){
+        if(result.hasErrors()){
+            return "addTodos";
+        }
+        todoService.addNewTodo(model, todo);
         return "addTodos";
     }
 

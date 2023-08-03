@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -8,7 +9,6 @@
 	<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 	<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 	<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
 
@@ -17,38 +17,39 @@
 <body>
 <div class="container">
 	<h1>Enter Todo Details</h1>
-	<form method="post">
+	<form:form method="post" modelAttribute="todo">
 
 		<div class="row mb-3">
 			<label for="description" class="col-sm-2 col-form-label">Description</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="description" name="description">
+				<form:input type="text" class="form-control" id="description" path="description" required="required"/>
+				<form:errors path="description" cssClass="text-warning"/>
 			</div>
 		</div>
 
-		<div class="row mb-3">
+		<%--<div class="row mb-3">
 			<label for="datepicker" class="col-sm-2 col-form-label">Target Date</label>
 			<div class="col-sm-10">
-				<input id="datepicker" width="276" name="targetDate"/>
+				<input id="datepicker" width="276" name="targetDate" required="required"/>
 				<script>
             $('#datepicker').datepicker({
                 uiLibrary: 'bootstrap5'
             });
 				</script>
 			</div>
-		</div>
+		</div>--%>
 
 		<fieldset class="row mb-3">
 			<legend class="col-form-label col-sm-2 pt-0">Completed</legend>
 			<div class="col-sm-10">
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="done" id="gridRadios1" value="no" checked>
+					<form:radiobutton  class="form-check-input" path="completed" id="gridRadios1" value="No" checked="true"/>
 					<label class="form-check-label" for="gridRadios1">
 						No
 					</label>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="done" id="gridRadios2" value="yes">
+					<form:radiobutton  class="form-check-input" path="completed" id="gridRadios2" value="Yes"/>
 					<label class="form-check-label" for="gridRadios2">
 						Yes
 					</label>
@@ -56,7 +57,7 @@
 			</div>
 		</fieldset>
 		<button type="submit" class="btn btn-success">Add Todo</button>
-	</form>
+	</form:form>
 	<p><a class="btn btn-primary" href="todos-list" role="button">Click</a> to view your todos</p>
 </div>
 <script src="webjars/bootstrap/5.3.1/js/bootstrap.min.js"></script>

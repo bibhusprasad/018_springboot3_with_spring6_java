@@ -14,7 +14,7 @@
               <th>id</th>
               <th>Description</th>
               <th>Target Date</th>
-              <th>Is Done?</th>
+              <th>Is Completed?</th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +23,7 @@
                 <td>${todo.id}</td>
                 <td>${todo.description}</td>
                 <td>${todo.targetDate}</td>
-                <td>${todo.done}</td>
+                <td>${todo.completed}</td>
               </tr>
             </c:forEach>
           </tbody>

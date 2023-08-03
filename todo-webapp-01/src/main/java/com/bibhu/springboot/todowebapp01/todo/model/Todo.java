@@ -1,6 +1,7 @@
 package com.bibhu.springboot.todowebapp01.todo.model;
 
 
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,8 @@ import java.time.LocalDate;
 public class Todo {
     private long id;
     private String username;
+    @Size(min = 5, message = "At least 5 characters" )
     private String description;
     private LocalDate targetDate;
-    private boolean done;
+    private String completed;
 }
