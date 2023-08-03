@@ -38,12 +38,8 @@ public class TodoService {
     }
 
     public void addNewTodo(ModelMap model, Todo todo) {
-       // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-       // LocalDate localDate = LocalDate.parse(targetDate, formatter);
         String username = (String) model.get("name");
-        //boolean isDone = done.equalsIgnoreCase("yes");
-        List<Todo> todosByUsername = findByUsername(username);
-        todos.add(new Todo(++size, username, todo.getDescription(), LocalDate.now().plusYears(1), todo.getCompleted()));
+        todos.add(new Todo(++size, username, todo.getDescription(), todo.getTargetDate(), todo.getCompleted()));
     }
 
     public void deleteTodoById(long id) {

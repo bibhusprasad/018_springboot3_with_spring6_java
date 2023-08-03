@@ -3,14 +3,15 @@
 
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%--<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">--%>
 	<link href="webjars/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet" >
-	<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	<link href="webjars/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
+	<%--<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 	<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-	<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>--%>
 
 	<title>Add Todo Page</title>
 </head>
@@ -19,13 +20,30 @@
 	<h1>Enter Todo Details</h1>
 	<form:form method="post" modelAttribute="todo">
 
-		<div class="row mb-3">
+		<%--<div class="row mb-3">
 			<label for="description" class="col-sm-2 col-form-label">Description</label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="description" path="description" required="required"/>
 				<form:errors path="description" cssClass="text-warning"/>
 			</div>
-		</div>
+		</div>--%>
+
+		<fieldset class="row mb-3">
+			<form:label class="col-sm-2 col-form-label" for="description" path="description" >Description</form:label>
+			<div class="col-sm-10">
+				<form:input class="form-control" type="text" path="description" required="required"/>
+				<form:errors path="description" cssClass="text-warning"/>
+			</div>
+		</fieldset>
+
+
+		<fieldset class="row mb-3">
+			<form:label class="col-sm-2 col-form-label" for="datepicker" path="targetDate">Target Date</form:label>
+			<div class="col-sm-10">
+				<form:input id="datepicker" width="276" type="text" path="targetDate" required="required"/>
+				<form:errors path="targetDate" cssClass="text-warning"/>
+			</div>
+		</fieldset>
 
 		<%--<div class="row mb-3">
 			<label for="datepicker" class="col-sm-2 col-form-label">Target Date</label>
@@ -62,6 +80,12 @@
 </div>
 <script src="webjars/bootstrap/5.3.1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+<%--<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>--%>
+<script src="webjars/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+</script>
 </body>
 </html>
