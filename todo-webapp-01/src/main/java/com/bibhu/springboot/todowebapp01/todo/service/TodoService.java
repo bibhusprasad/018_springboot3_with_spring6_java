@@ -13,15 +13,18 @@ import java.util.stream.Collectors;
 public class TodoService {
 
     private static List<Todo> todos;
+    private static int size = 0;
 
     static {
         todos = new ArrayList<>();
         todos.add(new Todo(1L, "AAA", "LearnAws", LocalDate.now().plusYears(1), "No"));
         todos.add(new Todo(2L, "AAA", "LearnAzure", LocalDate.now().plusYears(2), "No"));
         todos.add(new Todo(3L, "AAA", "LearnGCP", LocalDate.now().plusYears(3), "No"));
-        todos.add(new Todo(1L, "BBB", "LearnAws", LocalDate.now().plusYears(1), "No"));
-        todos.add(new Todo(2L, "BBB", "LearnAzure", LocalDate.now().plusYears(2), "No"));
-        todos.add(new Todo(3L, "BBB", "LearnGCP", LocalDate.now().plusYears(3), "No"));
+        todos.add(new Todo(4L, "BBB", "LearnAws", LocalDate.now().plusYears(1), "No"));
+        todos.add(new Todo(5L, "BBB", "LearnAzure", LocalDate.now().plusYears(2), "No"));
+        todos.add(new Todo(6L, "BBB", "LearnGCP", LocalDate.now().plusYears(3), "No"));
+        size = todos.size();
+
     }
 
     public List<Todo> findAllTodos() {
@@ -40,7 +43,20 @@ public class TodoService {
         String username = (String) model.get("name");
         //boolean isDone = done.equalsIgnoreCase("yes");
         List<Todo> todosByUsername = findByUsername(username);
-        todos.add(new Todo(todosByUsername.size()+1, username, todo.getDescription(), LocalDate.now().plusYears(1), todo.getCompleted()));
+        todos.add(new Todo(++size, username, todo.getDescription(), LocalDate.now().plusYears(1), todo.getCompleted()));
+    }
+
+    public void deleteTodoById(long id) {
+        todos.removeIf(todo -> todo.getId() == id);
+    }
+
+    public Todo findById(long id) {
+        return todos.stream().filter(todo -> todo.getId() == id).findFirst().get();
+    }
+
+    public void updateTodo(Todo todo) {
+        deleteTodoById(todo.getId());
+        todos.add(todo);
     }
 }
 
