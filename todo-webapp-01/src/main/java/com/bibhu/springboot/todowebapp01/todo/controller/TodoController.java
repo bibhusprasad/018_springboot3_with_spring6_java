@@ -22,13 +22,6 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-    @GetMapping("all-todos-list")
-    public String listAllTodos(ModelMap modelMap) {
-        List<Todo> todos = todoService.findAllTodos();
-        modelMap.put("todos", todos);
-        return "todosList";
-    }
-
     @GetMapping("todos-list")
     public String listAllTodosByUsername(ModelMap modelMap) {
         String username = (String) modelMap.get("name");

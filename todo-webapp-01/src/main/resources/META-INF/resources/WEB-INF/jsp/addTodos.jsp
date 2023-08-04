@@ -1,21 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html>
-<head>
-	<%--<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">--%>
-	<link href="webjars/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet" >
-	<link href="webjars/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
-	<%--<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
-	<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-	<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>--%>
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
 
-	<title>Add Todo Page</title>
-</head>
-<body>
 <div class="container">
 	<h1>Enter Todo Details</h1>
 	<form:form method="post" modelAttribute="todo">
@@ -78,14 +64,4 @@
 	</form:form>
 	<p><a class="btn btn-primary" href="todos-list" role="button">Click</a> to view your todos</p>
 </div>
-<script src="webjars/bootstrap/5.3.1/js/bootstrap.min.js"></script>
-<script src="webjars/jquery/3.7.0/jquery.min.js"></script>
-<%--<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>--%>
-<script src="webjars/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript">
-    $('#datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-</script>
-</body>
-</html>
+<%@ include file="common/footer.jspf"%>

@@ -20,15 +20,8 @@ public class TodoService {
         todos.add(new Todo(1L, "AAA", "LearnAws", LocalDate.now().plusYears(1), "No"));
         todos.add(new Todo(2L, "AAA", "LearnAzure", LocalDate.now().plusYears(2), "No"));
         todos.add(new Todo(3L, "AAA", "LearnGCP", LocalDate.now().plusYears(3), "No"));
-        todos.add(new Todo(4L, "BBB", "LearnAws", LocalDate.now().plusYears(1), "No"));
-        todos.add(new Todo(5L, "BBB", "LearnAzure", LocalDate.now().plusYears(2), "No"));
-        todos.add(new Todo(6L, "BBB", "LearnGCP", LocalDate.now().plusYears(3), "No"));
         size = todos.size();
 
-    }
-
-    public List<Todo> findAllTodos() {
-        return todos;
     }
 
     public List<Todo> findByUsername(String username) {
