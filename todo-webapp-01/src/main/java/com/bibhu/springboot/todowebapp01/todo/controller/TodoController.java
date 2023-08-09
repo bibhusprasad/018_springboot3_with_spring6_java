@@ -4,6 +4,8 @@ import com.bibhu.springboot.todowebapp01.todo.model.Todo;
 import com.bibhu.springboot.todowebapp01.todo.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -24,16 +26,14 @@ public class TodoController {
 
     @GetMapping("todos-list")
     public String listAllTodosByUsername(ModelMap modelMap) {
-        String username = (String) modelMap.get("name");
-        List<Todo> todos = todoService.findByUsername(username);
+        List<Todo> todos = todoService.findByUsername(getLoggedInUsername());
         modelMap.put("todos", todos);
         return "todosList";
     }
 
     @GetMapping("add-todo")
     public String showNewTodoPage(ModelMap model){
-        String username = (String) model.get("name");
-        Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), "No");
+        Todo todo = new Todo(0, getLoggedInUsername(), "", LocalDate.now().plusYears(1), "No");
         model.put("todo", todo);
         return "addTodos";
     }
@@ -61,14 +61,19 @@ public class TodoController {
     }
 
     @PostMapping("update-todo")
-    public String updateToPage(ModelMap model, @Valid Todo todo, BindingResult result) {
+    public String updateToPage(@Valid Todo todo, BindingResult result) {
         if(result.hasErrors()){
             return "addTodos";
         }
-        String username = (String)model.get("name");
-        todo.setUsername(username);
+        todo.setUsername(getLoggedInUsername());
         todoService.updateTodo(todo);
         return "redirect:todos-list";
+    }
+
+    private String getLoggedInUsername() {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
 }

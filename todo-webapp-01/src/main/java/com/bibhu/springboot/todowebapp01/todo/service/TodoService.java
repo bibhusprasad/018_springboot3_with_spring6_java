@@ -17,9 +17,9 @@ public class TodoService {
 
     static {
         todos = new ArrayList<>();
-        todos.add(new Todo(1L, "AAA", "LearnAws", LocalDate.now().plusYears(1), "No"));
-        todos.add(new Todo(2L, "AAA", "LearnAzure", LocalDate.now().plusYears(2), "No"));
-        todos.add(new Todo(3L, "AAA", "LearnGCP", LocalDate.now().plusYears(3), "No"));
+        todos.add(new Todo(1L, "bibhu", "LearnAws", LocalDate.now().plusYears(1), "No"));
+        todos.add(new Todo(2L, "bibhu", "LearnAzure", LocalDate.now().plusYears(2), "No"));
+        todos.add(new Todo(3L, "bibhu", "LearnGCP", LocalDate.now().plusYears(3), "No"));
         size = todos.size();
 
     }
