@@ -29,4 +29,11 @@ public class Todo {
     private String description;
     private LocalDate targetDate;
     private String completed;
+
+    public Todo(String username, String description, LocalDate targetDate, String completed) {
+        this.username = username;
+        this.description = description;
+        this.targetDate = targetDate;
+        this.completed = completed;
+    }
 }
