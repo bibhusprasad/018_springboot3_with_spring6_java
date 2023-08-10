@@ -23,3 +23,7 @@
 hs_err_pid*
 replay_pid*
 /.idea/
+/restful-web-service-01/mvnw.cmd
+/restful-web-service-01/mvnw
+/restful-web-service-01/.mvn/wrapper/maven-wrapper.properties
+/restful-web-service-01/.mvn/wrapper/maven-wrapper.jar
