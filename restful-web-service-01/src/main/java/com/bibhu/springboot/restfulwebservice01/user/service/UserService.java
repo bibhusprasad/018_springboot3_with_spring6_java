@@ -33,4 +33,8 @@ public class UserService {
         userList.add(user);
         return user;
     }
+
+    public void deleteUserBy(Long id) {
+        userList.removeIf(user -> user.getId() == id);
+    }
 }
