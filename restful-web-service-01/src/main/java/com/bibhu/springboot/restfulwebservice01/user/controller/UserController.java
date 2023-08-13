@@ -3,6 +3,7 @@ package com.bibhu.springboot.restfulwebservice01.user.controller;
 import com.bibhu.springboot.restfulwebservice01.user.exception.UserNotFoundException;
 import com.bibhu.springboot.restfulwebservice01.user.model.User;
 import com.bibhu.springboot.restfulwebservice01.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
         User savedUser = userService.createUser(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
