@@ -5,6 +5,8 @@ import com.bibhu.springboot.restfulwebservice01.user.model.User;
 import com.bibhu.springboot.restfulwebservice01.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -29,12 +34,15 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User findUserById(@PathVariable Long id){
+    public EntityModel<User> findUserById(@PathVariable Long id){
         User user = userService.findByUserId(id);
         if(null == user){
             throw new UserNotFoundException("id = " + id);
         }
-        return user;
+        EntityModel<User> userEntityModel = EntityModel.of(user);
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).findAllUser());
+        userEntityModel.add(link.withRel("all-users"));
+        return userEntityModel;
     }
 
     @PostMapping("/users")
