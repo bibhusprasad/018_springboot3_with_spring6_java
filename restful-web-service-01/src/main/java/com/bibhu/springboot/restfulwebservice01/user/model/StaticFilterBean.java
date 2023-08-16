@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 //@JsonIgnoreProperties("filed1")
-public class FilterBean {
+public class StaticFilterBean {
 
     private String filed1;
     @JsonIgnore
