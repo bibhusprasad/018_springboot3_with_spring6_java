@@ -1,8 +1,8 @@
-package com.bibhu.springboot.restfulwebservice01.person.controller;
+package com.bibhu.springboot.restfulwebservice01.versioning;
 
-import com.bibhu.springboot.restfulwebservice01.person.model.Name;
-import com.bibhu.springboot.restfulwebservice01.person.model.PersonV1;
-import com.bibhu.springboot.restfulwebservice01.person.model.PersonV2;
+import com.bibhu.springboot.restfulwebservice01.versioning.model.Name;
+import com.bibhu.springboot.restfulwebservice01.versioning.model.PersonV1;
+import com.bibhu.springboot.restfulwebservice01.versioning.model.PersonV2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

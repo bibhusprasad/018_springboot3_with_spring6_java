@@ -1,7 +1,7 @@
-package com.bibhu.springboot.restfulwebservice01.user.filtering;
+package com.bibhu.springboot.restfulwebservice01.filtering;
 
-import com.bibhu.springboot.restfulwebservice01.user.model.DynamicFilterBean;
-import com.bibhu.springboot.restfulwebservice01.user.model.StaticFilterBean;
+import com.bibhu.springboot.restfulwebservice01.filtering.model.DynamicFilterBean;
+import com.bibhu.springboot.restfulwebservice01.filtering.model.StaticFilterBean;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;

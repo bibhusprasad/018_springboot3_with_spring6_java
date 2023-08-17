@@ -1,4 +1,4 @@
-package com.bibhu.springboot.restfulwebservice01.person.model;
+package com.bibhu.springboot.restfulwebservice01.versioning.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,10 +8,10 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-public class PersonV2 {
+public class PersonV1 {
 
-    private Name name;
+    private String name;
 }

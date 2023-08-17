@@ -1,4 +1,4 @@
-package com.bibhu.springboot.restfulwebservice01.user.model;
+package com.bibhu.springboot.restfulwebservice01.filtering.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
