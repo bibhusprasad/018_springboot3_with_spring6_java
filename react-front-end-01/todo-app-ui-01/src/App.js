@@ -1,14 +1,16 @@
 import './App.css';
 
 /*import LearningComponent from "./components/learning-examples/LearningComponent";*/
-import Counter from "./components/counter-app/CounterComponent";
+/*import Counter from "./components/counter-app/CounterComponent";*/
+import TodoApp from "./components/todo-app/TodoApp";
 
 function App() {
     return (
         <div className="App">
             {/*<LearningComponent/>*/}
             {/*<PlayingWithProps property1 = "value1" property2 = "value2"/>*/}
-            <Counter/>
+            {/*<Counter/>*/}
+            <TodoApp/>
         </div>
     );
 }
