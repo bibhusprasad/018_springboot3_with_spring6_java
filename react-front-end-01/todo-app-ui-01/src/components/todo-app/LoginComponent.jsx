@@ -1,12 +1,14 @@
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {useAuth} from "./security/AuthContext";
 
 export default function LoginComponent() {
     const[username, setUsername] = useState('')
     const[password, setPassword] = useState('')
-    const[showSuccessMessage, setShowSuccessMessage] = useState(false)
+    //const[showSuccessMessage, setShowSuccessMessage] = useState(false)
     const[showErrorMessage, setShowErrorMessage] = useState(false)
     const navigate = useNavigate()
+    const authContext = useAuth()
 
     function handleUsernameChange(event) {
         setUsername(event.target.value)
@@ -17,22 +19,22 @@ export default function LoginComponent() {
     }
 
     function handleSubmit(event) {
-        if(username === password){
-            setShowSuccessMessage(true)
+        if(authContext.login(username, password)){
+            //setShowSuccessMessage(true)
             setShowErrorMessage(false)
             navigate(`/welcome/${username}`)
         } else {
-            setShowSuccessMessage(false)
+            //setShowSuccessMessage(false)
             setShowErrorMessage(true)
         }
     }
 
-    function ShowSuccessMessageComponent() {
+    /*function ShowSuccessMessageComponent() {
         if(showSuccessMessage){
             return <div className="SuccessMessage" >Authenticated Successful</div>
         }
         return null
-    }
+    }*/
 
     function ShowErrorMessageComponent() {
         if(showErrorMessage){
@@ -80,7 +82,7 @@ export default function LoginComponent() {
                             Forgot <Link href="#">password?</Link>
                         </p>
                     </div>
-                    <ShowSuccessMessageComponent/>
+                    {/*<ShowSuccessMessageComponent/>*/}
                     <ShowErrorMessageComponent/>
                 </div>
             </div>
