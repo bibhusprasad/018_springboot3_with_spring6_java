@@ -1,6 +1,6 @@
 import './TodoApp.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useNavigate, useParams} from "react-router-dom";
 import {useState} from "react";
 
 export default function TodoApp() {
@@ -10,7 +10,8 @@ export default function TodoApp() {
                 <Routes>
                     <Route path='/' element={<LoginComponent/>} />
                     <Route path='/login' element={<LoginComponent/>} />
-                    <Route path='/welcome' element={<WelcomeComponent/>} />
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>} />
+                    <Route path='*' element={<ErrorComponent/>} />
                 </Routes>
             </BrowserRouter>
         </div>
@@ -36,7 +37,7 @@ function LoginComponent() {
         if(username === password){
             setShowSuccessMessage(true)
             setShowErrorMessage(false)
-            navigate('/welcome')
+            navigate(`/welcome/${username}`)
         } else {
             setShowSuccessMessage(false)
             setShowErrorMessage(true)
@@ -105,9 +106,26 @@ function LoginComponent() {
 }
 
 function WelcomeComponent() {
+
+    const {username}= useParams()
+
     return(
-        <div className = "LoginComponent">
-            Welcome Component
+        <div className = "WelcomeComponent">
+            <h2>Welcome {username} to TODO app</h2>
+            <div>
+                Have a nice day!
+            </div>
+        </div>
+    )
+}
+
+function ErrorComponent() {
+    return(
+        <div className = "ErrorComponent">
+            <h2>We are working really hard!</h2>
+            <div>
+                Please contact at 123-456-7890
+            </div>
         </div>
     )
 }
