@@ -12,10 +12,12 @@ export default function AuthProvider({ children }) {
     const [number, setNumber] = useState(0)
     //setInterval(() => setNumber(number + 1) , 10000)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [username, setUsername] = useState(null)
 
 
     function login(username, password) {
         if(username === password){
+            setUsername(username)
             setIsAuthenticated(true)
             return true
         } else {
@@ -28,8 +30,12 @@ export default function AuthProvider({ children }) {
         setIsAuthenticated(false)
     }
 
+    function getUsername() {
+        return username
+    }
+
     return(
-        <AuthContext.Provider value={ {number, isAuthenticated, login, logout} }>
+        <AuthContext.Provider value={ {number, isAuthenticated, login, logout, username} }>
             {children}
         </AuthContext.Provider>
     )
