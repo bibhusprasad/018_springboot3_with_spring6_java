@@ -1,6 +1,10 @@
 import {Link, useParams} from "react-router-dom";
-import axios from "axios";
 import {useState} from "react";
+import {
+    retrieveHelloWorld,
+    retrieveHelloWorldBean,
+    retrieveHelloWorldBeanPathVariable
+} from "./api/HelloWorldApiService";
 
 export default function WelcomeComponent() {
 
@@ -11,7 +15,7 @@ export default function WelcomeComponent() {
     function callHelloWorldRestAPI() {
         console.log('called')
         //axios to call rest API
-        axios.get('http://localhost:8080/hello-world')
+       retrieveHelloWorld()
             .then((response) => successMessage(response))
             .catch((error) => errorMessage(error))
             .finally(() => console.log('cleanup code'))
@@ -20,7 +24,16 @@ export default function WelcomeComponent() {
     function callHelloWorldBeanRestAPI() {
         console.log('called')
         //axios to call rest API
-        axios.get('http://localhost:8080/hello-world-bean')
+       retrieveHelloWorldBean()
+            .then((response) => successBeanMessage(response))
+            .catch((error) => errorMessage(error))
+            .finally(() => console.log('cleanup code'))
+    }
+
+    function callHelloWorldBeanPathVariableRestAPI() {
+        console.log('called')
+        //axios to call rest API
+        retrieveHelloWorldBeanPathVariable(username)
             .then((response) => successBeanMessage(response))
             .catch((error) => errorMessage(error))
             .finally(() => console.log('cleanup code'))
@@ -55,6 +68,10 @@ export default function WelcomeComponent() {
             <div>
                 <button className="btn btn-success m-3" onClick= {callHelloWorldBeanRestAPI}>
                     Call Hello World Bean Rest API</button>
+            </div>
+            <div>
+                <button className="btn btn-success m-3" onClick= {callHelloWorldBeanPathVariableRestAPI}>
+                    Call Hello World Bean Path Variable Rest API</button>
             </div>
             <div className="text-info">{message}</div>
         </div>
