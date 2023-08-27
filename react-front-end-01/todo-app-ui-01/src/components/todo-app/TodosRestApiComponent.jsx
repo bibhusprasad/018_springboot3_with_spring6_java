@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {deleteTodoByUserId, retrieveAllTodosByUsername} from "./api/TodosApiService";
 
@@ -7,6 +7,7 @@ export default function TodosRestApiComponent() {
     const {username}= useParams()
     const [message, setMessage] = useState(null)
     const [todos, setTodos] = useState([])
+    const navigate = useNavigate()
 
     useEffect(
         () => {
@@ -24,7 +25,7 @@ export default function TodosRestApiComponent() {
             .finally(() => console.log('cleanup code'))
     }
 
-    function callDeleteApiByUserId(id) {
+    function callDeleteTodoApiByUserId(id) {
         deleteTodoByUserId(username, id)
             .then((response) => {
                 console.log(response)
@@ -33,6 +34,10 @@ export default function TodosRestApiComponent() {
             })
             .catch((error) => console.log(error))
             .finally(() => console.log('cleanup code'))
+    }
+
+    function callUpdateTodoApiByUserId(id) {
+        navigate(`/todo/${id}`)
     }
 
     return(
@@ -46,6 +51,7 @@ export default function TodosRestApiComponent() {
                         <th>Target Date</th>
                         <th>Done</th>
                         <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,8 +63,11 @@ export default function TodosRestApiComponent() {
                                     <td>{todo.targetDate.toString()}</td>
                                     <td>{todo.completed.toString()}</td>
                                     <td><button className="btn btn-warning"
-                                                onClick={() =>callDeleteApiByUserId(todo.id)}
+                                                onClick={() =>callDeleteTodoApiByUserId(todo.id)}
                                     >Delete</button></td>
+                                    <td><button className="btn btn-success"
+                                                onClick={() =>callUpdateTodoApiByUserId(todo.id)}
+                                    >Update</button></td>
                                 </tr>
                             )
                         )

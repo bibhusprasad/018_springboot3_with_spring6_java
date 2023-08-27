@@ -13,6 +13,13 @@ export const retrieveAllTodosByUsername =
 export const deleteTodoByUserId =
     (username, id) => apiClient.delete(`/users/${username}/todos/${id}`)
 
+export const retrieveTodoByUserId =
+    (username, id) => apiClient.get(`/users/${username}/todos/${id}`)
+
+
+/*export const updateTodoByUserId =
+    (username, id) => apiClient.post(`/users/${username}/todos/${id}`)*/
+
 /*
 export const retrieveHelloWorldBean =
     () => apiClient.get('/hello-world-bean')

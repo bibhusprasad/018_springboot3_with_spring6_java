@@ -21,6 +21,7 @@ export default function AuthProvider({ children }) {
             setIsAuthenticated(true)
             return true
         } else {
+            setUsername(null)
             setIsAuthenticated(false)
             return false
         }

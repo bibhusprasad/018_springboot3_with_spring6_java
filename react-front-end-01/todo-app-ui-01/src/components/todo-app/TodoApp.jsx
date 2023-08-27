@@ -11,6 +11,7 @@ import LoginComponent from "./LoginComponent";
 import AuthProvider, {useAuth} from "./security/AuthContext";
 import HelloWorldRestApiComponent from "./HelloWorldRestApiComponent";
 import TodosRestApiComponent from "./TodosRestApiComponent";
+import TodoComponent from "./TodoComponent";
 
 function AuthenticatedRoute({children}) {
     const authContext = useAuth()
@@ -45,6 +46,11 @@ export default function TodoApp() {
                         <Route path='/todos/:username' element={
                             <AuthenticatedRoute>
                                 <TodosRestApiComponent/>
+                            </AuthenticatedRoute>
+                        } />
+                        <Route path='/todo/:id' element={
+                            <AuthenticatedRoute>
+                                <TodoComponent/>
                             </AuthenticatedRoute>
                         } />
                         <Route path='/logout' element={
