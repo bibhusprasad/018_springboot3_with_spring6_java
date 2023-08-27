@@ -21,6 +21,8 @@ public class TodoService {
                 LocalDate.now().plusYears(11), false ));
         todos.add(new Todo(++todosCount, "bibhu","Learn Full Stack Development",
                 LocalDate.now().plusYears(12), false ));
+        todos.add(new Todo(++todosCount, "bibhu","Learn Spring boot",
+                LocalDate.now().plusYears(12), false ));
     }
 
     public List<Todo> findByUsername(String username){
