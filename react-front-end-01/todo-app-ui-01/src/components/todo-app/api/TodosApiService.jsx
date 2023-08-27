@@ -16,13 +16,5 @@ export const deleteTodoByUserId =
 export const retrieveTodoByUserId =
     (username, id) => apiClient.get(`/users/${username}/todos/${id}`)
 
-
-/*export const updateTodoByUserId =
-    (username, id) => apiClient.post(`/users/${username}/todos/${id}`)*/
-
-/*
-export const retrieveHelloWorldBean =
-    () => apiClient.get('/hello-world-bean')
-
-export const retrieveHelloWorldBeanPathVariable =
-    (username) => apiClient.get(`/hello-world/path-variable/${username}`)*/
+export const updateTodoByUserId =
+    (username, id, todo) => apiClient.put(`/users/${username}/todos/${id}`, todo)

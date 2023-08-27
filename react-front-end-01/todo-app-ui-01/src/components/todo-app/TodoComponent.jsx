@@ -1,5 +1,5 @@
-import {useParams} from "react-router-dom";
-import {retrieveTodoByUserId} from "./api/TodosApiService";
+import {useNavigate, useParams} from "react-router-dom";
+import {retrieveTodoByUserId, updateTodoByUserId} from "./api/TodosApiService";
 import {useAuth} from "./security/AuthContext";
 import {useEffect, useState} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -11,6 +11,7 @@ export default function TodoComponent() {
     const  username = authContext.username
     const [description, setDescription] = useState('')
     const [targetDate, setTargetDate] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         callRetrieveTodoApiByUserId()
@@ -28,7 +29,21 @@ export default function TodoComponent() {
     }
 
     function onSubmit(values) {
-        console.log(values)
+        const todo = {
+            id: id,
+            username: username,
+            description: values.description,
+            targetDate: values.targetDate,
+            completed: false
+        }
+        console.log(todo)
+        updateTodoByUserId(username, id, todo)
+            .then((response) => {
+                console.log(response)
+                navigate(`/todos/${username}`)
+            })
+            .catch((error) => console.log(error))
+            .finally(() => console.log('cleanup code'))
     }
 
     function validate(values) {
