@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {retrieveAllTodosByUsername} from "./api/TodosApiService";
+import {deleteTodoByUserId, retrieveAllTodosByUsername} from "./api/TodosApiService";
 
 export default function TodosRestApiComponent() {
 
@@ -24,6 +24,17 @@ export default function TodosRestApiComponent() {
             .finally(() => console.log('cleanup code'))
     }
 
+    function callDeleteApiByUserId(id) {
+        deleteTodoByUserId(username, id)
+            .then((response) => {
+                console.log(response)
+                setMessage(`Delete of Todo with id = ${id} successful.`)
+                callAllTodosByUsername()
+            })
+            .catch((error) => console.log(error))
+            .finally(() => console.log('cleanup code'))
+    }
+
     return(
         <div className="TodosRestApiComponent">
             <h2>Welcome {username} to Todos Rest API</h2>
@@ -31,10 +42,10 @@ export default function TodosRestApiComponent() {
                 <table className="table table-success table-striped">
                     <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Description</th>
                         <th>Target Date</th>
                         <th>Done</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,16 +53,19 @@ export default function TodosRestApiComponent() {
                         todos.map(
                             todo => (
                                 <tr key={todo.id}>
-                                    <td>{todo.id}</td>
                                     <td>{todo.description}</td>
                                     <td>{todo.targetDate.toString()}</td>
                                     <td>{todo.completed.toString()}</td>
+                                    <td><button className="btn btn-warning"
+                                                onClick={() =>callDeleteApiByUserId(todo.id)}
+                                    >Delete</button></td>
                                 </tr>
                             )
                         )
                     }
                     </tbody>
                 </table>
+                {message && <div className="alert alert-warning">{message}</div>}
             </div>
         </div>
     )
