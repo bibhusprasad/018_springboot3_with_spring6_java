@@ -10,10 +10,13 @@ export default function WelcomeComponent() {
             <div>
                 Have a nice day!
                 <div>
-                    <Link to="/todos"> Todos List</Link>
+                    <Link to="/todos"> Todos React Hard Coded List</Link>
                 </div>
                 <div>
-                    <Link to={`/hello-world/${username}`}> Hello World API</Link>
+                    <Link to={`/hello-world/${username}`}> Hello World Rest API</Link>
+                </div>
+                <div>
+                    <Link to={`/todos/${username}`}> Todos Rest API</Link>
                 </div>
             </div>
         </div>

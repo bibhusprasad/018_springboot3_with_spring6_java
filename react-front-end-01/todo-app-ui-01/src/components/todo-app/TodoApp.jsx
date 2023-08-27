@@ -9,7 +9,8 @@ import ErrorComponent from "./ErrorComponent";
 import WelcomeComponent from "./WelcomeComponent";
 import LoginComponent from "./LoginComponent";
 import AuthProvider, {useAuth} from "./security/AuthContext";
-import HelloWorldComponent from "./HelloWorldComponent";
+import HelloWorldRestApiComponent from "./HelloWorldRestApiComponent";
+import TodosRestApiComponent from "./TodosRestApiComponent";
 
 function AuthenticatedRoute({children}) {
     const authContext = useAuth()
@@ -38,7 +39,12 @@ export default function TodoApp() {
                         } />
                         <Route path='/hello-world/:username' element={
                             <AuthenticatedRoute>
-                                <HelloWorldComponent/>
+                                <HelloWorldRestApiComponent/>
+                            </AuthenticatedRoute>
+                        } />
+                        <Route path='/todos/:username' element={
+                            <AuthenticatedRoute>
+                                <TodosRestApiComponent/>
                             </AuthenticatedRoute>
                         } />
                         <Route path='/logout' element={

@@ -26,10 +26,13 @@ export default function HeaderComponent() {
                                     {isAuthenticated && <Link className="nav-link" to={`/welcome/${username}`}>Home</Link>}
                                 </li>
                                 <li className="nav-item fs-5">
-                                    {isAuthenticated && <Link className="nav-link" to="/todos">Todos</Link>}
+                                    {isAuthenticated && <Link className="nav-link" to="/todos">Todos HC</Link>}
                                 </li>
                                 <li className="nav-item fs-5">
-                                    {isAuthenticated && <Link className="nav-link" to={`/hello-world/${username}`}>HelloWorldAPI</Link>}
+                                    {isAuthenticated && <Link className="nav-link" to={`/hello-world/${username}`}>HelloWorldRestApi</Link>}
+                                </li>
+                                <li className="nav-item fs-5">
+                                    {isAuthenticated && <Link className="nav-link" to={`/todos/${username}`}>TodosRestApi</Link>}
                                 </li>
                             </ul>
                         </div>

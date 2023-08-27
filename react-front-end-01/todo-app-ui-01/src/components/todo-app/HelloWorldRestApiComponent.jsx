@@ -6,7 +6,7 @@ import {
     retrieveHelloWorldBeanPathVariable
 } from "./api/HelloWorldApiService";
 
-export default function HelloWorldComponent() {
+export default function HelloWorldRestApiComponent() {
 
     const {username}= useParams()
 
@@ -54,8 +54,8 @@ export default function HelloWorldComponent() {
         console.log(response)
     }
     return(
-        <div className = "HelloWorldComponent">
-            <h2>Welcome {username} to Hello World API</h2>
+        <div className = "HelloWorldRestApiComponent">
+            <h2>Welcome {username} to Hello World Rest API</h2>
             <div>
                 <button className="btn btn-success m-3" onClick= {callHelloWorldRestAPI}>
                     Call Hello World Rest API</button>
