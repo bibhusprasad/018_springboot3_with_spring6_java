@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {retrieveTodoByUserId} from "./api/TodosApiService";
 import {useAuth} from "./security/AuthContext";
 import {useEffect, useState} from "react";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 
 export default function TodoComponent() {
 
@@ -31,6 +31,20 @@ export default function TodoComponent() {
         console.log(values)
     }
 
+    function validate(values) {
+        let errors = {
+
+        }
+        console.log(values)
+        if(values.description.length < 3){
+            errors.description = 'Enter atleast 3 characters. '
+        }
+        if(values.targetDate == null){
+            errors.targetDate = 'Enter a valid Date. '
+        }
+        return errors
+    }
+
     return(
         <div className="TodoComponent">
             <h1>Welcome {username} to Todo Page</h1>
@@ -39,10 +53,15 @@ export default function TodoComponent() {
                 <Formik initialValues={{description, targetDate}}
                     enableReinitialize={true}
                         onSubmit={onSubmit}
+                        validate={validate}
+                        validateOnChange={false}
+                        validateOnBlur={false}
                 >
                     {
                         (props) => (
                             <Form>
+                                <ErrorMessage name="description" component="div" className="alert alert-warning"/>
+                                <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
                                 <fieldset className="form-group">
                                     <label className="fw-bold">Description </label>
                                     <Field type="text" className="form-control m-2" name="description"></Field>
@@ -52,7 +71,7 @@ export default function TodoComponent() {
                                     <Field type="date" className="form-control m-2" name="targetDate"></Field>
                                 </fieldset>
                                 <div>
-                                    <button type="submit" className="btn btn-success">Save</button>
+                                    <button type="submit" className="btn btn-success bottom-2">Save</button>
                                 </div>
                             </Form>
                         )
