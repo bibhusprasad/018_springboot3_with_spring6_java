@@ -40,6 +40,10 @@ export default function TodosRestApiComponent() {
         navigate(`/todo/${id}`)
     }
 
+    function callAddNewTodo() {
+        navigate(`/todo/-1`)
+    }
+
     return(
         <div className="TodosRestApiComponent">
             <h2>Welcome {username} to Todos Rest API</h2>
@@ -76,6 +80,8 @@ export default function TodosRestApiComponent() {
                 </table>
                 {message && <div className="alert alert-warning">{message}</div>}
             </div>
+            <button className="btn btn-dark m-5" onClick={callAddNewTodo}>Add New Todo</button>
+
         </div>
     )
 }

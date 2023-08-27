@@ -1,8 +1,9 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {retrieveTodoByUserId, updateTodoByUserId} from "./api/TodosApiService";
+import {createNewTodo, retrieveTodoByUserId, updateTodoByUserId} from "./api/TodosApiService";
 import {useAuth} from "./security/AuthContext";
 import {useEffect, useState} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import moment from "moment";
 
 export default function TodoComponent() {
 
@@ -18,14 +19,17 @@ export default function TodoComponent() {
     }, [id]);
 
     function callRetrieveTodoApiByUserId() {
-        retrieveTodoByUserId(username, id)
-            .then((response) => {
-                console.log(response)
-                setDescription(response.data.description)
-                setTargetDate(response.data.targetDate)
-            })
-            .catch((error) => console.log(error))
-            .finally(() => console.log('cleanup code'))
+        console.log(id)
+        if( parseInt(id) !== -1){
+            retrieveTodoByUserId(username, id)
+                .then((response) => {
+                    console.log(response)
+                    setDescription(response.data.description)
+                    setTargetDate(response.data.targetDate)
+                })
+                .catch((error) => console.log(error))
+                .finally(() => console.log('cleanup code'))
+        }
     }
 
     function onSubmit(values) {
@@ -37,13 +41,23 @@ export default function TodoComponent() {
             completed: false
         }
         console.log(todo)
-        updateTodoByUserId(username, id, todo)
-            .then((response) => {
-                console.log(response)
-                navigate(`/todos/${username}`)
-            })
-            .catch((error) => console.log(error))
-            .finally(() => console.log('cleanup code'))
+        if(parseInt(id) === -1 ){
+            createNewTodo(username, todo)
+                .then((response) => {
+                    console.log(response)
+                    navigate(`/todos/${username}`)
+                })
+                .catch((error) => console.log(error))
+                .finally(() => console.log('cleanup code'))
+        } else {
+            updateTodoByUserId(username, id, todo)
+                .then((response) => {
+                    console.log(response)
+                    navigate(`/todos/${username}`)
+                })
+                .catch((error) => console.log(error))
+                .finally(() => console.log('cleanup code'))
+        }
     }
 
     function validate(values) {
@@ -54,7 +68,10 @@ export default function TodoComponent() {
         if(values.description.length < 3){
             errors.description = 'Enter atleast 3 characters. '
         }
-        if(values.targetDate == null){
+        if(values.targetDate == null
+            || values.targetDate == ''
+            || !moment(values.targetDate).isValid()
+        ){
             errors.targetDate = 'Enter a valid Date. '
         }
         return errors
@@ -66,7 +83,7 @@ export default function TodoComponent() {
             <div className="container">
                 <h2>Enter Todo Details</h2>
                 <Formik initialValues={{description, targetDate}}
-                    enableReinitialize={true}
+                        enableReinitialize={true}
                         onSubmit={onSubmit}
                         validate={validate}
                         validateOnChange={false}
