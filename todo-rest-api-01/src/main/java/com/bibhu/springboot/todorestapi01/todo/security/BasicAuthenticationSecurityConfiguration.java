@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class BasicAuthenticationSecurityConfiguration {
 
     //Filter chain
-    @Bean
+    /** @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         //authenticate all request
         httpSecurity.authorizeHttpRequests(
@@ -26,5 +26,23 @@ public class BasicAuthenticationSecurityConfiguration {
         //disabling csrf
         httpSecurity.csrf(csrf -> csrf.disable());
         return httpSecurity.build();
+    }*/
+
+    //Filter chain
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                    //authenticate all request
+                    .authorizeHttpRequests(
+                            auth -> auth.anyRequest().authenticated())
+                    //Basic authentication with username and password present in properties file
+                    .httpBasic(Customizer.withDefaults())
+                    //stateless rest api
+                    .sessionManagement(
+                            session -> session.sessionCreationPolicy(
+                                    SessionCreationPolicy.STATELESS))
+                    //disabling csrf
+                    .csrf(csrf -> csrf.disable())
+                    .build();
     }
 }
