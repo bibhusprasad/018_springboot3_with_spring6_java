@@ -10,9 +10,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class BasicAuthenticationSecurityConfiguration {
 
     //Filter chain
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        //authenticate all request
         httpSecurity.authorizeHttpRequests(
                 auth -> auth.anyRequest().authenticated()
         );
