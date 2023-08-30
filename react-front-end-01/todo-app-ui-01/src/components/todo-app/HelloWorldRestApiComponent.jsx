@@ -5,12 +5,15 @@ import {
     retrieveHelloWorldBean,
     retrieveHelloWorldBeanPathVariable
 } from "./api/HelloWorldApiService";
+import {useAuth} from "./security/AuthContext";
 
 export default function HelloWorldRestApiComponent() {
 
     const {username}= useParams()
 
     const [message, setMessage] = useState(null)
+
+    const authContext = useAuth()
 
     function callHelloWorldRestAPI() {
         console.log('called')
@@ -33,7 +36,7 @@ export default function HelloWorldRestApiComponent() {
     function callHelloWorldBeanPathVariableRestAPI() {
         console.log('called')
         //axios to call rest API
-        retrieveHelloWorldBeanPathVariable(username)
+        retrieveHelloWorldBeanPathVariable(username, authContext.token)
             .then((response) => successBeanMessage(response))
             .catch((error) => errorMessage(error))
             .finally(() => console.log('cleanup code'))
