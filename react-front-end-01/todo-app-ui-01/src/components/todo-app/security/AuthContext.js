@@ -1,4 +1,5 @@
 import {createContext, useContext, useState} from "react";
+import {executeBasicAuthenticationService} from "../api/HelloWorldApiService";
 
 //1. Create a context
 export const AuthContext = createContext()
@@ -15,7 +16,7 @@ export default function AuthProvider({ children }) {
     const [username, setUsername] = useState(null)
 
 
-    function login(username, password) {
+    /*function login(username, password) {
         if(username === password){
             setUsername(username)
             setIsAuthenticated(true)
@@ -25,6 +26,16 @@ export default function AuthProvider({ children }) {
             setIsAuthenticated(false)
             return false
         }
+    }*/
+
+    function login(username, password) {
+
+        const basicAuthToken = 'Basic ' + window.btoa(username + ":" + password)
+
+        executeBasicAuthenticationService(basicAuthToken)
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+        setIsAuthenticated(false)
     }
 
     function logout() {
