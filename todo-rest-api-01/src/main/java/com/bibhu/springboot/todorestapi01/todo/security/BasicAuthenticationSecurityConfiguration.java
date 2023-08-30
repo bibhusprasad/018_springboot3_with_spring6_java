@@ -2,6 +2,7 @@ package com.bibhu.springboot.todorestapi01.todo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -34,7 +35,10 @@ public class BasicAuthenticationSecurityConfiguration {
         return httpSecurity
                     //authenticate all request
                     .authorizeHttpRequests(
-                            auth -> auth.anyRequest().authenticated())
+                            auth -> auth
+                                        //Response to Preflight request doesn't pass access control check
+                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                        .anyRequest().authenticated())
                     //Basic authentication with username and password present in properties file
                     .httpBasic(Customizer.withDefaults())
                     //stateless rest api
